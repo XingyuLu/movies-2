@@ -283,7 +283,6 @@
           <div class="method-source-code" id="predict-source">
             <pre><span class="ruby-comment"># File movies-2.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">predict</span>(<span class="ruby-identifier">u</span>,<span class="ruby-identifier">m</span>)
-  <span class="ruby-identifier">viewers</span> = <span class="ruby-identifier">viewers</span>(<span class="ruby-identifier">m</span>)
   <span class="ruby-identifier">rating</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">most_similar</span> = <span class="ruby-value">-1</span>
@@ -297,7 +296,7 @@
     <span class="ruby-ivar">@similarity_list</span>[<span class="ruby-identifier">u</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">viewers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">viewer</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">viewers</span>(<span class="ruby-identifier">m</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">viewer</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">similarity</span> = <span class="ruby-value">0</span>
     <span class="ruby-comment">#if this similarity is already in the similarity_list, we directly access it from the list</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@similarity_list</span>[<span class="ruby-identifier">u</span>].<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">viewer</span>)
@@ -395,7 +394,7 @@
 
           
           <div class="method-source-code" id="run_test-source">
-            <pre><span class="ruby-comment"># File movies-2.rb, line 153</span>
+            <pre><span class="ruby-comment"># File movies-2.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run_test</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">result</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">k</span> = <span class="ruby-ivar">@testSet</span>.<span class="ruby-identifier">length</span>

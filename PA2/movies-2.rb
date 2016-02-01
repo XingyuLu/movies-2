@@ -101,7 +101,6 @@ class MovieData
 
   #this method predicts user u's rating on movie m
   def predict(u,m)
-    viewers = viewers(m)
     rating = 0
     count = 0
     most_similar = -1
@@ -115,7 +114,7 @@ class MovieData
       @similarity_list[u] = Hash.new
     end
 
-    viewers.each do |viewer|
+    viewers(m).each do |viewer|
       similarity = 0
       #if this similarity is already in the similarity_list, we directly access it from the list
       if @similarity_list[u].has_key?(viewer)
