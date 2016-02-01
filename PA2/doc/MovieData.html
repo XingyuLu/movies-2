@@ -313,6 +313,7 @@
     <span class="ruby-comment">#then we look for the user who is most similar to user u. If there exists more than one,</span>
     <span class="ruby-comment">#we average the sum of ratings.</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">similarity</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">most_similar</span>
+      <span class="ruby-identifier">most_similar</span> = <span class="ruby-identifier">similarity</span>
       <span class="ruby-identifier">count</span> = <span class="ruby-value">1</span>
       <span class="ruby-identifier">rating</span> = <span class="ruby-ivar">@moviemap</span>[<span class="ruby-identifier">m</span>][<span class="ruby-identifier">viewer</span>]
     <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">similarity</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">most_similar</span>
@@ -394,7 +395,7 @@
 
           
           <div class="method-source-code" id="run_test-source">
-            <pre><span class="ruby-comment"># File movies-2.rb, line 152</span>
+            <pre><span class="ruby-comment"># File movies-2.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run_test</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">result</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">k</span> = <span class="ruby-ivar">@testSet</span>.<span class="ruby-identifier">length</span>

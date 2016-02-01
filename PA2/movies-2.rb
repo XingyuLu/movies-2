@@ -131,6 +131,7 @@ class MovieData
       #then we look for the user who is most similar to user u. If there exists more than one,
       #we average the sum of ratings.
       if similarity > most_similar
+        most_similar = similarity
         count = 1
         rating = @moviemap[m][viewer]
       elsif similarity == most_similar
