@@ -4,11 +4,12 @@
 
 class MovieData
   def initialize(*args)
-    @trainSet = File.open("#{args[0]}/u.data").readlines
     #using *args so initialize can take both one or two arguments
     if args.size == 2
+      @trainSet = File.open("#{args[0]}/#{args[1]}.base").readlines
       @testSet = File.open("#{args[0]}/#{args[1]}.test").readlines
     else
+      @trainSet = File.open("#{args[0]}/u.data").readlines
       @testSet = Array.new
     end
 
@@ -51,12 +52,20 @@ class MovieData
 
   #return the list of movies rated by u
   def movies(u)
-    @usermap[u].keys
+    if @usermap.has_key?(u)
+      @usermap[u].keys
+    else
+      Array.new
+    end
   end
 
   #return the list of viewers who rated m
   def viewers(m)
-    @moviemap[m].keys
+    if @moviemap.has_key?(m)
+      @moviemap[m].keys
+    else
+      Array.new
+    end
   end
 
   #return the similarity between user1 and user2
@@ -64,7 +73,7 @@ class MovieData
     count = 0
     similar = 0
     #to make a shorter comparison, we loop on the shorter movie list
-    if @usermap[user1].length > @usermap[user2].length
+    if movies(user1).length > movies(user2).length
       u1 = user2
       u2 = user1
     else
@@ -75,7 +84,7 @@ class MovieData
     @usermap[u1].each do |m1, r1|
       #if user1 and user2 have both rated one movie m, we compare the rating they made
       #and the difference bewteen these two ratings indicates their similarity. The smaller
-      #the difference, the more similar these users are.
+      #the difference is, the more similar these users are.
       if @usermap[u2].has_key?(m1)
         count += 1
         similar += 5 - (r1 - @usermap[u2][m1]).abs
@@ -130,8 +139,14 @@ class MovieData
       end
     end
 
-    rating/count.to_f
+    if count == 0
+      #if no one ever rates this movie, predict an average rating 3
+      3
+    else
+      rating/count.to_f
+    end
   end
+
 
   #run the test and return a MovieTest object
   def run_test(*args)
@@ -198,10 +213,3 @@ class MovieTest
   end
 
 end
-
-
-
-z = MovieData.new('ml-100k', :u1)
-k = z.run_test()
-puts k.rms
-puts k.mean
